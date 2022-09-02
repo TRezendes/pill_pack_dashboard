@@ -1,6 +1,6 @@
+import time
 import logging
 import threading
-import time
 import concurrent.futures
 
 # Single Thread
@@ -42,7 +42,7 @@ if __name__ == "__main__":
 '''
 
 # Multiple Threads v.1
-'''
+
 def thread_function(name):
     logging.info("Thread %s: starting", name)
     time.sleep(2)
@@ -63,7 +63,7 @@ if __name__ == "__main__":
         logging.info("Main    : before joining thread %d.", index)
         thread.join()
         logging.info("Main    : thread %d done", index)
-'''
+
 
 # Multiple Threads v.2
 '''
@@ -81,7 +81,7 @@ if __name__ == "__main__":
 '''
 
 # Race Condition
-
+'''
 class FakeDatabase:
     def __init__(self):
         self.value = 0
@@ -104,3 +104,4 @@ if __name__ == "__main__":
         for index in range(2):
             executor.submit(database.update, index)
     logging.info("Testing update. Ending value is %d.", database.value)
+'''

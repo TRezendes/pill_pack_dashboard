@@ -6,3 +6,4 @@ load_dotenv('.env')
 
 class Config(object):
 	PATH_TO_WATCH = os.environ.get('PATH_TO_WATCH')
+	SECRET_KEY = os.environ.get('SECRET_KEY')
