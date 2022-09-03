@@ -153,3 +153,9 @@ cython_debug/
 
 # Nova
 **/.nova
+
+# Database
+*.sqlite
+*.sqlite3
+*.db
+*.db3

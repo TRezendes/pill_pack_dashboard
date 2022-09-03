@@ -1,6 +1,6 @@
 from pill_pack_dashboard.config import Config
-from .models import
-from
+from ppd_flask.models import fill_lists
+import sqlalchemy
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
@@ -23,5 +23,6 @@ def run(self):
 
 class MyHandler(FileSystemEventHandler):
     def on_created(self, event):
+        
         print(event) # Your code here
         print(f'The file path is: {event.src_path}')
