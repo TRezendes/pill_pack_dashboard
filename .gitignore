@@ -159,3 +159,7 @@ cython_debug/
 *.sqlite3
 *.db
 *.db3
+
+# Project Specific
+facilities.csv
+exportFileNames.txt
