@@ -159,6 +159,8 @@ cython_debug/
 *.sqlite3
 *.db
 *.db3
+*.sqlite3-journal
+*.sqlite-journal
 
 # Project Specific
 facilities.csv
