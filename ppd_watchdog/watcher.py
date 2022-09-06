@@ -2,20 +2,22 @@ import os
 import time
 import platform
 from selenium import webdriver
-from sqlqlchemy.orm import Session
+from sqlalchemy.orm import Session
 from watchdog.observers import Observer
 from sqlalchemy.orm import declarative_base
 from pill_pack_dashboard.config import Config
 from watchdog.events import FileSystemEventHandler
 from sqlalchemy import create_engine, select, Table, update
 
+#with open('../config.py') as config:
+#    from config import Config
 
 # Initialize variables
 dbURL = Config.SQLALCHEMY_DATABASE_URI
 engine = create_engine(dbURL, echo=True, future=True)
+Base = declarative_base()
 opSys = platform.system()
 path = Config.PATH_TO_WATCH
-Base = declarative_base()
 facilityList = []
 
 
@@ -25,7 +27,7 @@ Base.metadata.reflect(engine)
 class fill_lists(Base):
     __table__ = Base.metadata.tables['fill_lists']
 
-# Generate list pf facilities from facilities.csv [superseded by database query]
+# Generate list of facilities from facilities.csv [superseded by database query]
 '''
 with open('../facilities.csv', newline='') as f:
     reader = csv.reader(f)
@@ -36,7 +38,7 @@ for facility in facilityListOfLists:
 '''
 
 
-# Initialize Seleniuum web driver
+# Initialize Selenium web driver
 ## Safari driver is built into MacOS
 if opSys == 'Darwin':
     driver = webdriver.Safari()
@@ -44,7 +46,7 @@ if opSys == 'Darwin':
 else:
     from selenium.webdriver.chrome.service import Service as ChromeService
     from webdriver_manager.chrome import ChromeDriverManager
-    
+
     driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
 
 
@@ -62,7 +64,7 @@ def run(self):
     except:
         self.observer.stop()
     self.observer.join()
-    
+
 # Database query to generate facility list
 with Session(engine) as session:
     stmt = select(fill_lists.list_export_name)
@@ -82,10 +84,10 @@ class MyHandler(FileSystemEventHandler):
                 session.commit()
         time.sleep(.5)
         driver.refresh()
-            
+
 #        print(event) # Your code here
 #        print(f'The file path is: {event.src_path}')
-        
+
 if __name__ == '__main__':
     w = Watcher(path, MyHandler())
     w.run()
