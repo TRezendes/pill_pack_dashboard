@@ -3,6 +3,8 @@ from flask import render_template, redirect, url_for, flash, request
 from ppd.models import fill_lists
 import csv
 
+
+
 @app.route('/')
 def goToDashboard:
     return redirect(url_for('Dashboard'))

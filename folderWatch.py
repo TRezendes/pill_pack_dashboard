@@ -1,3 +1,4 @@
+import os
 import sys
 import time
 import logging
@@ -63,6 +64,10 @@ class MyHandler(FileSystemEventHandler):
     def on_created(self, event):
         print(event) # Your code here
         print(f'The file path is: {event.src_path}')
+        fullFilePath=event.src_path
+        fileName=fullFilePath.rsplit(os.sep, 1)[-1]
+        print(f'The file name is: {fileName}')
+
 
 if __name__=="__main__":
     w = Watcher(path, MyHandler())

@@ -1,19 +1,47 @@
-from pill_pack_dashboard.config import Config
-from ppd_flask.models import fill_lists
-from sqlalchemy import create_engine
-from watchdog.observers import Observer
-from watchdog.events import FileSystemEventHandler
+import os
+import time
 import platform
+from selenium import webdriver
+from sqlqlchemy.orm import Session
+from watchdog.observers import Observer
+from sqlalchemy.orm import declarative_base
+from pill_pack_dashboard.config import Config
+from watchdog.events import FileSystemEventHandler
+from sqlalchemy import create_engine, select, Table, update
 
+
+# Initialize variables
 dbURL = Config.SQLALCHEMY_DATABASE_URI
-engine = create_engine(DBURL, echo=True, future=True)
+engine = create_engine(dbURL, echo=True, future=True)
 opSys = platform.system()
 path = Config.PATH_TO_WATCH
+Base = declarative_base()
+facilityList = []
 
+
+# Reflect database table(s) created by the flask application
+Base.metadata.reflect(engine)
+
+class fill_lists(Base):
+    __table__ = Base.metadata.tables['fill_lists']
+
+# Generate list pf facilities from facilities.csv [superseded by database query]
+'''
+with open('../facilities.csv', newline='') as f:
+    reader = csv.reader(f)
+    facilityListOfLists = list(reader)
+
+for facility in facilityListOfLists:
+    facilityList.append(facilityListOfLists[0])
+'''
+
+
+# Initialize Seleniuum web driver
+## Safari driver is built into MacOS
 if opSys == 'Darwin':
     driver = webdriver.Safari()
+## Get latest Chrome driver if not on a Mac
 else:
-    from selenium import webdriver
     from selenium.webdriver.chrome.service import Service as ChromeService
     from webdriver_manager.chrome import ChromeDriverManager
     
@@ -34,9 +62,30 @@ def run(self):
     except:
         self.observer.stop()
     self.observer.join()
+    
+# Database query to generate facility list
+with Session(engine) as session:
+    stmt = select(fill_lists.list_export_name)
+    result = session.execute(stmt)
+    for facility in result:
+        facilityList.append(facility.list_export_name)
+
 
 class MyHandler(FileSystemEventHandler):
     def on_created(self, event):
+        fullFilePath=event.src_path
+        fileName=fullFilePath.rsplit(os.sep, 1)[-1]
+        if fileName in facilityList:
+            with Session(engine) as session:
+                stmt = update(fill_lists).where(fill_lists.list_export_name == fileName).values(exported=True)
+                session.execute(stmt)
+                session.commit()
+        time.sleep(.5)
+        driver.refresh()
+            
+#        print(event) # Your code here
+#        print(f'The file path is: {event.src_path}')
         
-        print(event) # Your code here
-        print(f'The file path is: {event.src_path}')
+if __name__ == '__main__':
+    w = Watcher(path, MyHandler())
+    w.run()
