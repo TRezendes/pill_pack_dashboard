@@ -2,52 +2,20 @@
 <html lang="en">
 
 <head>
-    {% block head %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css_base.css') }}">
-    <script src="https://kit.fontawesome.com/56f2c79116.js" crossorigin="anonymous"></script>
-    {% endblock %}
+  <title>Pill Pack Dashboard</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href={{ url_for('static', filename="css/w3.css") }}>
+  <link rel="stylesheet" href={{ url_for('static', filename="css/w3-theme-dark-grey.css") }}>
+  <link rel="stylesheet" href={{ url_for('static', filename="css/custom.css") }}>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+  <script src="https://kit.fontawesome.com/56f2c79116.js" crossorigin="anonymous"></script>
+  <style>
+    {% block style %}{% endblock %}
+  </style>
 </head>
-
 <body>
-    <div id="header">
-        <nav>
-            {% block nav %}
-            <p>
-
-            </p>
-            {% endblock %}
-            <p>
-            <p class="head-right">{% if current_user.is_authenticated %}{{ session['fname'] }} |{% endif %} Simple Summer Reading</p>
-            </p>
-
-        </nav>
-        <!-- Flash Message Display Code -->
-        {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-        {% for category, message in messages %}
-        <div class="alert alert-{{ category }}"">
-                     <button type=" button" class="close-button" aria-label="Close" onclick="this.parentElement.style.display='none';">
-            <span aria-hidden="true">&times;</span>
-            </button>
-            {{ message }}
-        </div>
-        {% endfor %}
-        {% endif %}
-        {% endwith %}
-        <!-- -->
-
-    </div>
-    <div id="content">{% block content %}{% endblock %}</div>
-
-    <!-- A little bit of breathing room… -->
-    <div class="breathe">
-        &nbsp;
-    </div>
-    <div id="footer" class="smaller">
-        {% block footer %}
-        Simple Summer Reading | An App by <a href="https://rezendes.info" target="_blank">Timothy Rezendes</a>
-        {% endblock %}
-    </div>
+{% block content %}{% endblock %}
 </body>
 
 </html>
