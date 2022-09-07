@@ -1,7 +1,8 @@
-from ppd_flask import app
+from ppd_flask import app, db
 from flask import render_template, redirect, url_for, flash, request
 from .models import fill_lists
 import csv
+import os
 
 
 
@@ -17,13 +18,16 @@ def Dashboard():
         fill_list_list=fill_list_list
     )
 
-@app.route('/reset')
+@app.route('/reset', methods=['POST'])
 def dbReset():
-    if form.validate_on_submit():
+    form='Reset'
+    if request.method == 'POST':
         fill_lists.query.delete()
         db.session.commit()
         fac_obj_list=[]
-        with open('../facilities.csv', newline='') as f:
+        print('**************************************')
+        print(os.getcwd())
+        with open(url_for('static', filename='facilities.csv'), newline='') as f:
             reader = csv.reader(f)
             facilityList = list(reader)
 
@@ -33,4 +37,7 @@ def dbReset():
             fac_obj_list.append(fac_obj)
         db.session.add_all(fac_obj_list)
         db.session.commit()
-    return redirect(url_for('Dashboard'))
+    return redirect(
+        url_for('Dashboard'),
+        form='Reset'
+    )

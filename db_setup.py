@@ -7,7 +7,7 @@ db.create_all()
 fill_lists.query.delete()
 db.session.commit()
 fac_obj_list=[]
-with open('facilities.csv', newline='') as f:
+with open('ppd_flask/static/facilities.csv', newline='') as f:
     reader = csv.reader(f)
     facilityList = list(reader)
     
