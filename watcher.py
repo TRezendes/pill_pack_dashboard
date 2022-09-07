@@ -49,21 +49,21 @@ else:
 
     driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
 
-
-def __init__(self, directory=".", handler=FileSystemEventHandler()):
-    self.observer = Observer()
-    self.handler = handler
-    self.directory = directory
-
-def run(self):
-    self.observer.schedule(self.handler, self.directory, recursive=True)
-    self.observer.start()
-    try:
-        while True:
-            time.sleep(1)
-    except:
-        self.observer.stop()
-    self.observer.join()
+class Watcher:
+    def __init__(self, directory=".", handler=FileSystemEventHandler()):
+        self.observer = Observer()
+        self.handler = handler
+        self.directory = directory
+    
+    def run(self):
+        self.observer.schedule(self.handler, self.directory, recursive=True)
+        self.observer.start()
+        try:
+            while True:
+                time.sleep(1)
+        except:
+            self.observer.stop()
+        self.observer.join()
 
 # Database query to generate facility list
 with Session(engine) as session:
@@ -74,6 +74,7 @@ with Session(engine) as session:
 
 
 class MyHandler(FileSystemEventHandler):
+    driver.get("http://127.0.0.1:5000/dashboard")
     def on_created(self, event):
         fullFilePath=event.src_path
         fileName=fullFilePath.rsplit(os.sep, 1)[-1]

@@ -1,20 +1,24 @@
-from ppd import app
+from ppd_flask import app
 from flask import render_template, redirect, url_for, flash, request
-from ppd.models import fill_lists
+from .models import fill_lists
 import csv
 
 
 
 @app.route('/')
-def goToDashboard:
+def goToDashboard():
     return redirect(url_for('Dashboard'))
 
 @app.route('/dashboard')
-def Dashboard:
-    return render_template('dashboard.html')
+def Dashboard():
+    fill_list_list = fill_lists.query.all()
+    return render_template(
+        'dashboard.html',
+        fill_list_list=fill_list_list
+    )
 
 @app.route('/reset')
-def dbReset:
+def dbReset():
     if form.validate_on_submit():
         fill_lists.query.delete()
         db.session.commit()

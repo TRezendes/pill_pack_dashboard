@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="w3-theme-d5 w3-content">
+    <div class="grid-container four">
+        {% for fill_list in fill_list_list %}
+        {% if fill_list.exported == True %} 
+        <div style="background: #D60270">
+        {% else %}
+        <div style="background: #9B4F96">
+        {% endif %}
+            <h2>{{ fill_list.display_name }}</h2>
+            <p class="smaller">{{ fill_list.facility }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+<!-- 
+#D60270
+#9B4F96
+#0038A8
+-->
