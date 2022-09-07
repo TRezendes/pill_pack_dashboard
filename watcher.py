@@ -5,7 +5,7 @@ from selenium import webdriver
 from sqlalchemy.orm import Session
 from watchdog.observers import Observer
 from sqlalchemy.orm import declarative_base
-from pill_pack_dashboard.config import Config
+from config import Config
 from watchdog.events import FileSystemEventHandler
 from sqlalchemy import create_engine, select, Table, update
 
