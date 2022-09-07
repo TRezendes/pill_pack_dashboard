@@ -26,8 +26,8 @@ def dbReset():
         db.session.commit()
         fac_obj_list=[]
         print('**************************************')
-        print(os.getcwd())
-        with open(url_for('static', filename='facilities.csv'), newline='') as f:
+        print(os.path.abspath(url_for('static', filename="facilities.csv")))
+        with open('/static/facilities.csv', newline='') as f:
             reader = csv.reader(f)
             facilityList = list(reader)
 
@@ -37,7 +37,4 @@ def dbReset():
             fac_obj_list.append(fac_obj)
         db.session.add_all(fac_obj_list)
         db.session.commit()
-    return redirect(
-        url_for('Dashboard'),
-        form='Reset'
-    )
+    return redirect(url_for('Dashboard'))
