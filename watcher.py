@@ -41,14 +41,21 @@ for facility in facilityListOfLists:
 # Initialize Selenium web driver
 ## Safari driver is built into MacOS
 if opSys == 'Darwin':
-    driver = webdriver.Safari()
+    ## Unfortunately, Safari does not allow an automated browser window to be interacted with. 
+    # driver = webdriver.Safari()
+    ## So we're going to have to use Firefox
+    from selenium.webdriver.firefox.service import Service as FirefoxService
+    from webdriver_manager.firefox import GeckoDriverManager
+    
+    driver = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()))
+    
 ## Get latest Chrome driver if not on a Mac
 else:
     from selenium.webdriver.chrome.service import Service as ChromeService
     from webdriver_manager.chrome import ChromeDriverManager
 
     driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
-
+    
 class Watcher:
     def __init__(self, directory=".", handler=FileSystemEventHandler()):
         self.observer = Observer()
