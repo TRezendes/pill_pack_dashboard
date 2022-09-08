@@ -1,6 +1,7 @@
 from ppd_flask import app, db
 from flask import render_template, redirect, url_for, flash, request
 from .models import fill_lists
+from config import basedir
 import csv
 import os
 
@@ -21,13 +22,12 @@ def Dashboard():
 @app.route('/reset', methods=['POST'])
 def dbReset():
     form='Reset'
+    facilityFilePath=os.path.join(basedir, 'ppd_flask/static', 'facilities.csv')
     if request.method == 'POST':
         fill_lists.query.delete()
         db.session.commit()
         fac_obj_list=[]
-        print('**************************************')
-        print(os.path.abspath(url_for('static', filename="facilities.csv")))
-        with open('/static/facilities.csv', newline='') as f:
+        with open(facilityFilePath, newline='') as f:
             reader = csv.reader(f)
             facilityList = list(reader)
 
