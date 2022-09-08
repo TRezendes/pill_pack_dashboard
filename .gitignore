@@ -167,3 +167,4 @@ cython_debug/
 # Project Specific
 facilities.csv
 exportFileNames.txt
+*.command
