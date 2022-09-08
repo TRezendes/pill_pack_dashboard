@@ -55,7 +55,8 @@ else:
     from webdriver_manager.chrome import ChromeDriverManager
 
     driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
-    
+
+# Code for the Watcher and MyHandler classes is adapted from https://philipkiely.com/code/python_watchdog.html
 class Watcher:
     def __init__(self, directory=".", handler=FileSystemEventHandler()):
         self.observer = Observer()
