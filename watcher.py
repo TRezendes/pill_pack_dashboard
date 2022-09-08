@@ -59,9 +59,9 @@ if opSys == 'Darwin':
     ## …so we're going to have to use Firefox
     from selenium.webdriver.firefox.service import Service as FirefoxService
     from webdriver_manager.firefox import GeckoDriverManager
-    
+
     driver = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()))
-    
+
 ## Get latest Chrome driver if not on a Mac
 else:
     from selenium.webdriver.chrome.service import Service as ChromeService
@@ -75,7 +75,7 @@ class Watcher:
         self.observer = Observer()
         self.handler = handler
         self.directory = directory
-    
+
     def run(self):
         self.observer.schedule(self.handler, self.directory, recursive=True)
         self.observer.start()
@@ -99,6 +99,8 @@ class MyHandler(FileSystemEventHandler):
     def on_created(self, event):
         fullFilePath=event.src_path
         fileName=fullFilePath.rsplit(os.sep, 1)[-1]
+        # Print path to ensure watcher is working
+        print(f'New file at: {fullFilePath}')
         if fileName in facilityList:
             with Session(engine) as session:
                 stmt = update(fill_lists).where(fill_lists.list_export_name == fileName).values(exported=True)
@@ -106,7 +108,20 @@ class MyHandler(FileSystemEventHandler):
                 session.commit()
         time.sleep(.5)
         driver.refresh()
-        
+
+    def on_moved(self, event):
+        fileStartPath=event.src_path
+        fileName=fileStartPath.rsplit(os.sep, 1)[-1]
+        fileEndPath=event.dest_path
+        # Print path to ensure watcher is working
+        print(f'{fileName} moved from {fileStartPath} to {fileEndPath}')
+
+    def on_deleted(self, event):
+        fileStartPath=event.src_path
+        fileName=fileStartPath.rsplit(os.sep, 1)[-1]
+        # Print path to ensure watcher is working
+        print(f'{fileName} was deleted from {fileStartPath}.')
+
 if __name__ == '__main__':
     w = Watcher(path, MyHandler())
     w.run()
