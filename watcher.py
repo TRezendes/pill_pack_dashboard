@@ -1,11 +1,11 @@
 import os
 import time
 import platform
+from config import Config
 from selenium import webdriver
 from sqlalchemy.orm import Session
 from watchdog.observers import Observer
 from sqlalchemy.orm import declarative_base
-from config import Config
 from watchdog.events import FileSystemEventHandler
 from sqlalchemy import create_engine, select, Table, update
 
@@ -26,17 +26,6 @@ Base.metadata.reflect(engine)
 
 class fill_lists(Base):
     __table__ = Base.metadata.tables['fill_lists']
-
-# Generate list of facilities from facilities.csv [superseded by database query]
-'''
-with open('../facilities.csv', newline='') as f:
-    reader = csv.reader(f)
-    facilityListOfLists = list(reader)
-
-for facility in facilityListOfLists:
-    facilityList.append(facilityListOfLists[0])
-'''
-
 
 # Initialize Selenium web driver
 ## Safari driver is built into MacOS
@@ -93,10 +82,7 @@ class MyHandler(FileSystemEventHandler):
                 session.commit()
         time.sleep(.5)
         driver.refresh()
-
-#        print(event) # Your code here
-#        print(f'The file path is: {event.src_path}')
-
+        
 if __name__ == '__main__':
     w = Watcher(path, MyHandler())
     w.run()
