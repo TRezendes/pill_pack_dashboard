@@ -41,9 +41,9 @@ for facility in facilityListOfLists:
 # Initialize Selenium web driver
 ## Safari driver is built into MacOS
 if opSys == 'Darwin':
-    ## Unfortunately, Safari does not allow an automated browser window to be interacted with. 
+    ## Unfortunately, Safari does not allow an automated browser window to be interacted with…
     # driver = webdriver.Safari()
-    ## So we're going to have to use Firefox
+    ## …so we're going to have to use Firefox
     from selenium.webdriver.firefox.service import Service as FirefoxService
     from webdriver_manager.firefox import GeckoDriverManager
     
