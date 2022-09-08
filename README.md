@@ -1,4 +1,4 @@
-# Pill-pack Dashboard
+# Pill-Pack Dashboard
  ## A utility for monitoring production status when using Parata Pass and QS/1
  
  `PATH_TO_WATCH` should be set to the folder into which fill list `.dat` files are exported.
