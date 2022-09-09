@@ -23,6 +23,7 @@ SOFTWARE.
 '''
 
 from ppd_flask import db
+from sqlalchemy import CheckConstraint
 
 class fill_lists(db.Model):
     list_export_name = db.Column(db.Text, primary_key=True)
@@ -31,3 +32,6 @@ class fill_lists(db.Model):
     exported = db.Column(db.Boolean, default=False)
     running = db.Column(db.Boolean, default=False)
     complete =  db.Column(db.Boolean, default=False)
+    pull_day = db.Column('pull_day', db.Integer, db.CheckConstraint('pull_day BETWEEN 1 AND 7'))
+    fill_day = db.Column('fill_day', db.Integer, db.CheckConstraint('fill_day BETWEEN 1 AND 7'))
+    del_day = db.Column('del_day', db.Integer, db.CheckConstraint('del_day BETWEEN 1 AND 7'))
