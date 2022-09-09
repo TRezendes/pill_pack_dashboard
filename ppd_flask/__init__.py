@@ -32,4 +32,7 @@ app.config['SECRET_KEY'] = Config.SECRET_KEY
 db = SQLAlchemy(app)
 
 
+from ppd_flask.models import *
+db.create_all()
+
 from ppd_flask import routes
