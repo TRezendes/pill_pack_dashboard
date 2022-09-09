@@ -23,6 +23,7 @@ SOFTWARE.
 '''
 
 from ppd_flask import app, db
+from ppd_flask.models import *
 
 if __name__ == "__main__":
     db.create_all()
