@@ -2,21 +2,21 @@
 
 {% block content %}
 <div class="w3-theme-d5 w3-content">
-    <div class="grid-container two">
+    <div class="grid-container three">
     {% for fill_list in fill_list_list %}
     {% if fill_list.exported == True %} 
         <div style="background: #D60270">
             <h1>{{ fill_list.display_name }}</h1>
-            <p class="smaller">{{ fill_list.facility }}</p>
+            <p class="larger">{{ fill_list.facility }}</p>
         </div>
     {% endif %}
     {% endfor %}
     </div>
-    <div class="grid-container four">
+    <div class="grid-container six centered">
     {% for fill_list in fill_list_list %}
     {% if fill_list.exported == False %} 
         <div class="w3-theme-d3">
-            <p>{{ fill_list.display_name }}</p>
+            <h3>{{ fill_list.display_name }}</h3>
             <p class="smaller">{{ fill_list.facility }}</p>
         </div>
     {% endif %}
