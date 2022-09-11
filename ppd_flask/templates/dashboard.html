@@ -2,6 +2,13 @@
 
 {% block content %}
 <div class="w3-theme-d5 w3-content">
+    <!-- <div class="w3-display-topleft">
+        <form method="POST" name="Reset" action="/reset" target="_self">
+            <input type="submit" value="Settings" class="w3-circle" />
+            <i class="fa-solid fa-gears"></i>
+        </form>
+    </div> -->
+    </div>
     <div class="grid-container two">
     {% for fill_list in fill_list_list %}
     {% if fill_list.exported == True %} 
@@ -25,7 +32,6 @@
     <div class="centered">
         <form method="POST" name="Reset" action="/reset" target="_self">
             <input type="submit" value="Reset Dashboard" class="w3-btn w3-xxlarge w3-round-large w3-ripple custom-blue-button centered" />
-            
         </form>
     </div>
 </div>

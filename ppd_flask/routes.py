@@ -26,10 +26,13 @@ from flask import render_template, redirect, url_for, flash, request
 from .models import fill_lists
 from ppd_flask import app, db
 from config import basedir
+from ppd_flask import db
+from .forms import DotW, DotWlist
 import csv
 import os
 
 
+fill_list_list = fill_lists.query.all()
 
 @app.route('/')
 def goToDashboard():
@@ -37,7 +40,6 @@ def goToDashboard():
 
 @app.route('/dashboard')
 def Dashboard():
-    fill_list_list = fill_lists.query.all()
     return render_template(
         'dashboard.html',
         fill_list_list=fill_list_list
@@ -45,7 +47,7 @@ def Dashboard():
 
 @app.route('/reset', methods=['POST'])
 def dbReset():
-    form='Reset'
+    #form='Reset'
     facilityFilePath=os.path.join(basedir, 'ppd_flask/static', 'facilities.csv')
     if request.method == 'POST':
         fill_lists.query.delete()
@@ -62,3 +64,12 @@ def dbReset():
         db.session.add_all(fac_obj_list)
         db.session.commit()
     return redirect(url_for('Dashboard'))
+    
+@app.route('/settings')
+def Settings():
+    form = DotWlist
+    return render_template(
+        'settings.html',
+        fill_list_list=fill_list_list,
+        form=form
+    )
