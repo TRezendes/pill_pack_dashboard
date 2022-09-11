@@ -25,13 +25,16 @@ SOFTWARE.
 from ppd_flask import db
 from sqlalchemy import CheckConstraint
 
-class fill_lists(db.Model):
+class FillList(db.Model):
     list_export_name = db.Column(db.Text, primary_key=True)
     display_name = db.Column(db.Text, nullable=False, unique=True)
-    facility = db.Column(db.Text)
-    exported = db.Column(db.Boolean, default=False)
-    running = db.Column(db.Boolean, default=False)
-    complete =  db.Column(db.Boolean, default=False)
-    pull_day = db.Column('pull_day', db.Integer, db.CheckConstraint('pull_day BETWEEN 1 AND 7'))
-    fill_day = db.Column('fill_day', db.Integer, db.CheckConstraint('fill_day BETWEEN 1 AND 7'))
-    del_day = db.Column('del_day', db.Integer, db.CheckConstraint('del_day BETWEEN 1 AND 7'))
+    facility = db.Column(db.Text, nullable=False)
+    exported = db.Column(db.Boolean, default=False, nullable=False)
+    running = db.Column(db.Boolean, default=False, nullable=False)
+    complete =  db.Column(db.Boolean, default=False, nullable=False)
+    
+class Facility(db.Model):
+    facility_name = db.Column(db.Text, primary_key=True)
+    pull_day = db.Column('pull_day', db.Integer, db.CheckConstraint('pull_day BETWEEN 0 AND 7'), default=0, nullable=False)
+    fill_day = db.Column('fill_day', db.Integer, db.CheckConstraint('pull_day BETWEEN 0 AND 7'), default=0, nullable=False)
+    del_day = db.Column('del_day', db.Integer, db.CheckConstraint('pull_day BETWEEN 0 AND 7'), default=0, nullable=False)

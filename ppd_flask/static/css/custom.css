@@ -23,11 +23,14 @@ SOFTWARE.
 */
 
 .grid-container {
-    width: 75%;
+    width: 90%;
     display: grid;
     column-gap: 50px;
     row-gap: 25px;
     margin: 3% auto;
+}
+.six {
+    grid-template-columns: auto auto auto auto auto auto;
 }
 .five {
     grid-template-columns: auto auto auto auto auto;
@@ -54,10 +57,29 @@ SOFTWARE.
     border-radius: 10%;
     background-color: #ffffff25;
 }
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-container div {
+    margin: 10px;
+}
 .smaller {
     font-size: smaller;
 }
-.custom-blue-button {
+.custom-pink {
+    color:#fff!important;
+    background-color:#D60270!important
+}
+.custom-purple {
+    color:#fff!important;
+    background-color:#9B4F96!important
+}
+.custom-blue {
     color:#fff!important;
     background-color:#0038A8!important
 }

@@ -1,15 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
+<div style="position: fixed; left: 0; top: 0; margin: 2%;">    
+    <form method="POST" name="Reset" action="{{ url_for('Settings') }}" target="_self">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+        <button type="submit" class="w3-btn w3-circle custom-purple w3-xlarge w3-ripple">
+            <i class="fa-solid fa-gears centered"></i>
+        </button>
+    </form>
+</div>
 <div class="w3-theme-d5 w3-content">
-    <!-- <div class="w3-display-topleft">
-        <form method="POST" name="Reset" action="/reset" target="_self">
-            <input type="submit" value="Settings" class="w3-circle" />
-            <i class="fa-solid fa-gears"></i>
-        </form>
-    </div> -->
-    </div>
-    <div class="grid-container two">
+    <div class="grid-container three">
     {% for fill_list in fill_list_list %}
     {% if fill_list.exported == True %} 
         <div style="background: #D60270">
@@ -19,7 +20,7 @@
     {% endif %}
     {% endfor %}
     </div>
-    <div class="grid-container four">
+    <div class="grid-container six">
     {% for fill_list in fill_list_list %}
     {% if fill_list.exported == False %} 
         <div class="w3-theme-d3">
@@ -30,9 +31,9 @@
     {% endfor %}
     </div>
     <div class="centered">
-        <form method="POST" name="Reset" action="/reset" target="_self">
-            <input type="submit" value="Reset Dashboard" class="w3-btn w3-xxlarge w3-round-large w3-ripple custom-blue-button centered" />
+        <form method="POST" name="Reset" action="{{ url_for('dbReset') }}" target="_self">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            <button type="submit" value="Reset Dashboard" class="w3-btn w3-xxlarge w3-round-large w3-ripple custom-blue centered">Reset Dashboard</button>
         </form>
-    </div>
 </div>
 {% endblock %}

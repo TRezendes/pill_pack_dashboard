@@ -48,8 +48,8 @@ facilityList = []
 # Reflect database table(s) created by the flask application
 Base.metadata.reflect(engine)
 
-class fill_lists(Base):
-    __table__ = Base.metadata.tables['fill_lists']
+class FillList(Base):
+    __table__ = Base.metadata.tables['FillList']
 
 # Initialize Selenium web driver
 ## Safari driver is built into MacOS
@@ -88,7 +88,7 @@ class Watcher:
 
 # Database query to generate facility list
 with Session(engine) as session:
-    stmt = select(fill_lists.list_export_name)
+    stmt = select(FillList.list_export_name)
     result = session.execute(stmt)
     for facility in result:
         facilityList.append(facility.list_export_name)
@@ -103,7 +103,7 @@ class MyHandler(FileSystemEventHandler):
         print(f'New file at: {fullFilePath}')
         if fileName in facilityList:
             with Session(engine) as session:
-                stmt = update(fill_lists).where(fill_lists.list_export_name == fileName).values(exported=True)
+                stmt = update(FillList).where(FillList.list_export_name == fileName).values(exported=True)
                 session.execute(stmt)
                 session.commit()
         time.sleep(.5)

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="w3-theme-d5 w3-content">
+    <form name="DaySetting" method="POST">
+        {{ form.hidden_tag() }}
+        <div class="flex-container">
+        {% for facility in facility_list %}
+            {% if facility.pull_day %}
+                {% set pullDefault = facility.pull_day %}
+            {% endif %}
+            {% if facility.fill_day %}
+                {% set fillDefault = facility.fill_day %}
+            {% endif %}
+            {% if facility.del_day %}
+                {% set delDefault = facility.del_day %}
+            {% endif %}
+            <div class="w3-theme-d3">
+                <p>{{ facility_list.facility }}</p>
+                <p>{{ form.settings() }}</p>
+            </div>
+        {% endfor %}
+        <!-- <input type="submit" formaction="{% print(form.settings.data) %}"/> -->
+        </div>
+    </form>
+    <form method="POST" name="Rebuild" action="{{ url_for('dbRebuild') }}" target="_self">
+        <button type="submit" value="Rebuild Database" class="w3-btn w3-xxsmall w3-round w3-ripple w3-red centered"><i class="fa-solid fa-triangle-exclamation"></i>Rebuild Database<i class="fa-solid fa-triangle-exclamation"></i></button>
+        <button type="submit" class="w3-btn w3-circle custom-purple w3-xlarge w3-ripple">
+            <i class="fa-solid fa-gears centered"></i>
+        </button>
+    </form>
+</div>
+{% endblock %}
