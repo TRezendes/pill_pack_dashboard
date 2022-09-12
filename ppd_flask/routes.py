@@ -23,7 +23,7 @@ SOFTWARE.
 '''
 
 from flask import render_template, redirect, url_for, flash, request
-from .models import Facility, FillList
+from .models import facility, fill_list
 from ppd_flask import app, db
 from config import basedir
 from .forms import DotW, DotWlist
@@ -31,8 +31,8 @@ import csv
 import os
 
 
-fill_list_list = FillList.query.all()
-facility_list = FillList.query.distinct(FillList.facility).all()
+fill_list_list = fill_list.query.all()
+facility_list = fill_list.query.distinct(fill_list.facility).all()
 
 @app.route('/')
 def goToDashboard():
@@ -49,8 +49,8 @@ def Dashboard():
 def dbRebuild():
     facilityFilePath=os.path.join(basedir, 'ppd_flask/static', 'facilities.csv')
     if request.method == 'POST':
-        Facility.query.delete()
-        FillList.query.delete()
+        facility.query.delete()
+        fill_list.query.delete()
         db.session.commit()
         fac_obj_list=[]
         fl_obj_list=[]
@@ -60,8 +60,8 @@ def dbRebuild():
         for facility in facilityList:
             fac_dit = {'facility': facility[2]}
             fl_dict = {'list_export_name': facility[0],'display_name': facility[1]}
-            fac_obj = Facility(**fac_dit)
-            fl_obj = FillList(**fl_dict)
+            fac_obj = facility(**fac_dit)
+            fl_obj = fill_list(**fl_dict)
             fac_obj_list.append(fac_obj)
             fl_obj_list.append(fl_obj)
         db.session.add_all(fac_obj_list, fl_obj_list)
@@ -70,7 +70,7 @@ def dbRebuild():
     
 @app.route('/reset', methods=['POST'])
 def dbReset():
-    update(FillList).values(exported=False, running=False, completed=False)
+    update(fill_list).values(exported=False, running=False, completed=False)
     return redirect(url_for('Dashboard'))
     
 @app.route('/settings', methods=['POST'])

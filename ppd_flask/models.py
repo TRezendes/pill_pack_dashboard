@@ -25,7 +25,7 @@ SOFTWARE.
 from ppd_flask import db
 from sqlalchemy import CheckConstraint
 
-class FillList(db.Model):
+class fill_list(db.Model):
     list_export_name = db.Column(db.Text, primary_key=True)
     display_name = db.Column(db.Text, nullable=False, unique=True)
     facility = db.Column(db.Text, nullable=False)
@@ -33,7 +33,7 @@ class FillList(db.Model):
     running = db.Column(db.Boolean, default=False, nullable=False)
     complete =  db.Column(db.Boolean, default=False, nullable=False)
     
-class Facility(db.Model):
+class facility(db.Model):
     facility_name = db.Column(db.Text, primary_key=True)
     pull_day = db.Column('pull_day', db.Integer, db.CheckConstraint('pull_day BETWEEN 0 AND 7'), default=0, nullable=False)
     fill_day = db.Column('fill_day', db.Integer, db.CheckConstraint('pull_day BETWEEN 0 AND 7'), default=0, nullable=False)
