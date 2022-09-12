@@ -31,7 +31,7 @@ h1 {
     font-weight: 700;
 }
 .grid-container {
-    width: 105%;
+    width: 110%;
     display: grid;
     column-gap: 25px;
     row-gap: 25px;
