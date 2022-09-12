@@ -52,17 +52,20 @@ def dbRebuild():
         facility.query.delete()
         fill_list.query.delete()
         db.session.commit()
+        fac_list=[]
         fac_obj_list=[]
         fl_obj_list=[]
         with open(facilityFilePath, newline='') as f:
             reader = csv.reader(f)
             facilityList = list(reader)
         for facility in facilityList:
-            fac_dit = {'facility': facility[2]}
+            fac_dit = {'facility_name': facility[2]}
+            if facility[2] not in fac_list:
+                fac_list.append(facility[2])
+                fac_obj = facility(**fac_dit)
+                fac_obj_list.append(fac_obj)
             fl_dict = {'list_export_name': facility[0],'display_name': facility[1]}
-            fac_obj = facility(**fac_dit)
             fl_obj = fill_list(**fl_dict)
-            fac_obj_list.append(fac_obj)
             fl_obj_list.append(fl_obj)
         db.session.add_all(fac_obj_list, fl_obj_list)
         db.session.commit()
