@@ -11,4 +11,5 @@ class DotW(Form):
     del_day = SelectField('Delivery Day', choices=days, coerce=int, validators=[(Optional())])
 
 class DotWlist(FlaskForm):
-    settings = FieldList(FormField(DotW), min_entries=1)
+    min=len(facility.query.all())
+    settings = FieldList(FormField(DotW), min_entries=min)
