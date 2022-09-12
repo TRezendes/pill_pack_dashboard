@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<div class="w3-theme-d5 w3-content w3-display-container">
+<div class="w3-theme-d5 w3-content">
     <form name="DaySetting" method="POST">
         {{ form.hidden_tag() }}
         <div class="flex-container">
@@ -16,10 +16,15 @@
             </div>
         {% endfor %}
         </div>
+        <div class="centered" style="margin: 20px auto">
+            <button type="submit" value="Update Days of the Week" class="w3-btn w3-round w3-ripple custom-blue centered">Update Days of the Week</button>
+        </div>
     </form>
-    <form method="POST" name="Rebuild" action="{{ url_for('dbRebuild') }}" target="_self">
+</div>
+<div class="w3-display-container" style="width: 100%;">
+    <form method="POST" name="Rebuild" action="{{ url_for('dbRebuild') }}" target="_self" style="margin-left: 85%; margin-top: 10%;">
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-        <button type="submit" value="Rebuild Database" class="w3-btn w3-xxsmall w3-round w3-ripple w3-red centered w3-display-bottomright" style="margin: 10px"><i class="fa-solid fa-triangle-exclamation"></i>Rebuild Database<i class="fa-solid fa-triangle-exclamation"></i></button>
+        <button type="submit" value="Rebuild Database" class="w3-btn w3-xxsmall w3-round w3-ripple w3-red centered smaller" style="margin: 10px"><i class="fa-solid fa-triangle-exclamation"></i> Rebuild Database <i class="fa-solid fa-triangle-exclamation"></i></button>
     </form>
 </div>
 {% endblock %}
