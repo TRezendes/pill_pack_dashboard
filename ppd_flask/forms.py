@@ -1,6 +1,6 @@
 from ppd_flask import db
 from flask_wtf import FlaskForm, Form
-from ppd_flask.models import Facility, FillList
+from ppd_flask.models import facility, fill_list
 from wtforms.validators import DataRequired, Optional
 from wtforms import FieldList, FormField, HiddenField, SelectField
 
