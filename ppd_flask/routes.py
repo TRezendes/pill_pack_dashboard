@@ -109,7 +109,7 @@ def dbFileUpload(file):
         fill_lists.query.delete()
         db.session.commit()
         fac_obj_list=[]
-        with open(facilityFilePath, newline='') as f:
+        with open(uploadFilePath, newline='') as f:
             reader = csv.reader(f)
             facilityList = list(reader)
 
