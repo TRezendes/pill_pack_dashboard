@@ -4,7 +4,7 @@
 <div class="w3-theme-d5 w3-content">
     <div class="grid-container three">
     {% for fill_list in fill_list_list %}
-    {% if fill_list.exported == True %} 
+    {% if fill_list.exported == True %}
         <div style="background: #D60270">
             <h1>{{ fill_list.display_name }}</h1>
             <p class="larger">{{ fill_list.facility }}</p>
@@ -14,7 +14,7 @@
     </div>
     <div class="grid-container six centered">
     {% for fill_list in fill_list_list %}
-    {% if fill_list.exported == False %} 
+    {% if fill_list.exported == False %}
         <div class="w3-theme-d3">
             <h3>{{ fill_list.display_name }}</h3>
             <p class="smaller">{{ fill_list.facility }}</p>
@@ -24,8 +24,8 @@
     </div>
     <div class="centered">
         <form method="POST" name="Reset" action="/reset" target="_self">
-            <input type="submit" value="Reset Dashboard" class="w3-btn w3-xxlarge w3-round-large w3-ripple custom-blue-button centered" />
-            
+            <input type="submit" value="Reset Dashboard" class="w3-btn w3-xxlarge w3-round-large w3-ripple custom-blue centered" />
+
         </form>
     </div>
 </div>

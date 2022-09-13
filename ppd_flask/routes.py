@@ -56,17 +56,25 @@ def Dashboard():
     sub_key4 = 'display_class'
     for fill_list in fill_list_list:
         key = fill_list.list_export_name
+        if fill_list.exported:
+            display_class=timeTier(fill_list.last_export)
+        else:
+            display_class='Tier4'
         attribute_dict = {
         sub_key1: fill_list.display_name,
         sub_key2: fill_list.facility,
         sub_key3: fill_list.exported,
-        sub_key4: timeTier(fill_list.last_export)
+        sub_key4: display_class
         }
         fill_list_dict[key] = attribute_dict
     return render_template(
         'dashboard.html',
         fill_list_list=fill_list_list,
-        fill_list_dict=fill_list_dict
+        fill_list_dict=fill_list_dict,
+        sub_key1=sub_key1,
+        sub_key2=sub_key2,
+        sub_key3=sub_key3,
+        sub_key4=sub_key4
     )
 
 @app.route('/reset', methods=['POST'])
@@ -88,3 +96,35 @@ def dbReset():
         db.session.add_all(fac_obj_list)
         db.session.commit()
     return redirect(url_for('Dashboard'))
+
+@app.route('/db-load/<file>', methods=['GET','POST'])
+def dbFileUpload(file):
+    uploadFilePath=os.path.join(basedir, 'ppd_flask/import', file)
+    if request.method == 'GET':
+        return render_template(
+        'confirm.html',
+        file=file
+        )
+    if request.method == 'POST':
+        fill_lists.query.delete()
+        db.session.commit()
+        fac_obj_list=[]
+        with open(facilityFilePath, newline='') as f:
+            reader = csv.reader(f)
+            facilityList = list(reader)
+
+        for facility in facilityList:
+            fac_dict = {
+            'list_export_name': facility[0],
+            'display_name': facility[1],
+            'facility': facility[2],
+            'exported': facility[3],
+            'running': facility[4],
+            'complete': facility[5],
+            'last_export': facility[6]
+            }
+            fac_obj = fill_lists(**fac_dict)
+            fac_obj_list.append(fac_obj)
+        db.session.add_all(fac_obj_list)
+        db.session.commit()
+        return redirect(url_for('Dashboard'))

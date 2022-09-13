@@ -71,7 +71,27 @@ h1 {
 .larger {
     font-size: larger;
 }
-.custom-blue-button {
+.custom-pink {
+    color:#fff!important;
+    background-color:#D60270!important
+}
+.custom-purple {
+    color:#fff!important;
+    background-color:#9B4F96!important
+}
+.custom-blue {
+    color:#fff!important;
+    background-color:#0038A8!important
+}
+.Tier1 {
+    color:#fff!important;
+    background-color:#D60270!important
+}
+.Tier2 {
+    color:#fff!important;
+    background-color:#9B4F96!important
+}
+.Tier3 {
     color:#fff!important;
     background-color:#0038A8!important
 }

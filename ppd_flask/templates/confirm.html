@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="centerd">
+    <h1>Are you absolutely sure you want to do this?</h1>
+    <h2>Uploading this file will overwrite all data currently in the database!</h2>
+    <form method='POST' name="uploadConfirm" action="{{ url_for('dbFileUpload', file=file) }}" target="_self">
+        <button type="submit" name="uploadConfirm" class="w3-btn w3-xxxlarge w3-round-large w3-ripple w3-red centered">BE ABSOLUTELY SURE!</button>
+    </form>
+</div>
+{% endblock %}
