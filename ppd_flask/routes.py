@@ -23,13 +23,24 @@ SOFTWARE.
 '''
 
 from flask import render_template, redirect, url_for, flash, request
-from .models import fill_lists
+from datetime import datetime, timedelta
+from ppd_flask.models import fill_lists
 from ppd_flask import app, db
 from config import basedir
 import csv
 import os
 
-
+def timeTier(export_time):
+    now=datetime.now()
+    then=now-timedelta(0,60)
+    if export_time.date() == now.date():
+        if export_time > then:
+            display_class = 'Tier1'
+        else:
+            display_class = 'Tier2'
+    else:
+        display_class = 'Tier3'
+    return display_class
 
 @app.route('/')
 def goToDashboard():
@@ -38,9 +49,24 @@ def goToDashboard():
 @app.route('/dashboard')
 def Dashboard():
     fill_list_list = fill_lists.query.all()
+    fill_list_dict = {}
+    sub_key1 = 'display_name'
+    sub_key2 = 'facility'
+    sub_key3 = 'exported'
+    sub_key4 = 'display_class'
+    for fill_list in fill_list_list:
+        key = fill_list.list_export_name
+        attribute_dict = {
+        sub_key1: fill_list.display_name,
+        sub_key2: fill_list.facility,
+        sub_key3: fill_list.exported,
+        sub_key4: timeTier(fill_list.last_export)
+        }
+        fill_list_dict[key] = attribute_dict
     return render_template(
         'dashboard.html',
-        fill_list_list=fill_list_list
+        fill_list_list=fill_list_list,
+        fill_list_dict=fill_list_dict
     )
 
 @app.route('/reset', methods=['POST'])

@@ -26,6 +26,7 @@ import os
 import time
 import platform
 from config import Config
+from datetime import datetime
 from selenium import webdriver
 from sqlalchemy.orm import Session
 from watchdog.observers import Observer
@@ -97,13 +98,14 @@ with Session(engine) as session:
 class MyHandler(FileSystemEventHandler):
     driver.get("http://127.0.0.1:5000/dashboard")
     def on_created(self, event):
+        now=datetime.now()
         fullFilePath=event.src_path
         fileName=fullFilePath.rsplit(os.sep, 1)[-1]
         # Print path to ensure watcher is working
         print(f'New file at: {fullFilePath}')
         if fileName in facilityList:
             with Session(engine) as session:
-                stmt = update(fill_lists).where(fill_lists.list_export_name == fileName).values(exported=True)
+                stmt = update(fill_lists).where(fill_lists.list_export_name == fileName).values(exported=True, last_export=now)
                 session.execute(stmt)
                 session.commit()
         time.sleep(.5)
