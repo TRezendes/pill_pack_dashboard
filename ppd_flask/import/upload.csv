@@ -1,41 +1,41 @@
-LA_1st.dat,LA 1,Lakeview,1,0,0,27:49.6
-LA_2nd.dat,LA 2,Lakeview,1,0,0,46:01.3
-LA_3rd.dat,LA 3,Lakeview,1,0,0,35:51.3
-LA_4th.dat,LA 4,Lakeview,1,0,0,50:43.2
-RidgeA.dat,Ridge A,Tel Hai Skilled,1,0,0,21:15.0
-RidgeB.dat,Ridge B,Tel Hai Skilled,0,0,0,41:10.7
-RidgeC.dat,Ridge C,Tel Hai Skilled,0,0,0,17:04.3
-BrookA.dat,Brook A,Tel Hai Skilled,0,0,0,25:53.1
-BrookB.dat,Brook B,Tel Hai Skilled,0,0,0,39:22.4
-BrookC.dat,Brook C,Tel Hai Skilled,0,0,0,58:11.7
-Memory_Support.dat,LV,Meadowview,1,0,0,06:32.1
-MtnView_Upper.dat,MU,Mountainview Upper,1,0,0,03:38.0
-MtnView_Lower.dat,ML,Mountainview Lower,1,0,0,23:18.4
-GSV_Skilled_FC.dat,FC,GSV Skilled,0,0,0,59:37.7
-GSV_Skilled_WG.dat,WG,GSV Skilled,1,0,0,12:54.4
-GSV_Skilled_SW.dat,SW,GSV Skilled,0,0,0,40:31.6
-GSV_Skilled_SF.dat,SF,GSV Skilled,1,0,0,46:13.5
-FMT_Farmcrest.dat,FA,Farmcrest,1,0,0,01:11.6
-FMT_WRPC.dat,PC,WRPC,1,0,0,15:39.6
-FMT_NE_NF.dat,"NE, NF",FMT Skilled,0,0,0,05:49.9
-FMT_NG_NH.dat,"NG, NH",FMT Skilled,1,0,0,10:05.7
-FMT_N1.dat,N1,FMT Skilled,0,0,0,28:32.4
-FMT_RH.dat,RH,FMT Skilled,0,0,0,03:09.1
-SUNNY_SA.dat,SA,Sunny Crest,0,0,0,49:02.4
-SUNNY_SB.dat,SB,Sunny Crest,0,0,0,40:26.2
-SUNNY_SC.dat,SCF,Sunny Crest,1,0,0,31:37.1
-SUNNY_SG.dat,SG,Sunny Crest,1,0,0,56:47.3
-ACADIA_B1toB4.dat,AC B1ï¿½B4,Acadia,1,0,0,44:31.8
-ACADIA_B5toB8.dat,AC B5ï¿½B8,Acadia,1,0,0,21:23.7
-EVERGREEN_EM_EN.dat,"EM, EN",Evergreen,1,0,0,25:11.6
-EVERGREEN_ES.dat,ES,Evergreen,0,0,0,35:27.5
-EVERGREEN_EW.dat,EW,Evergreen,1,0,0,37:05.4
-CountryView.dat,CV,Country View,1,0,0,18:32.4
-Willow_View.dat,WV,Willow View,1,0,0,18:07.2
-Brossman.dat,BH,Maple Farm,1,0,0,20:36.9
-Franzen.dat,FH,Maple Farm,0,0,0,01:32.2
-OUTPATIENT_P1.dat,P1,Med Packs P1,1,0,0,25:36.3
-OUTPATIENT_P2.dat,P2,Med Packs P2,1,0,0,12:56.7
-OUTPATIENT_P3.dat,P3,Med Packs P3,1,0,0,28:09.1
-OUTPATIENT_P4.dat,P4,Med Packs P4,0,0,0,57:12.4
-Heartwood_HW.dat,HW,Heatherwood,1,0,0,
+LA_1st.dat,LA 1,Lakeview,1,0,0,1628196959
+LA_2nd.dat,LA 2,Lakeview,1,0,0,1626315765
+LA_3rd.dat,LA 3,Lakeview,1,0,0,1581608802
+LA_4th.dat,LA 4,Lakeview,1,0,0,1581259831
+RidgeA.dat,Ridge A,Tel Hai Skilled,1,0,0,1649566466
+RidgeB.dat,Ridge B,Tel Hai Skilled,0,0,0,1637533433
+RidgeC.dat,Ridge C,Tel Hai Skilled,0,0,0,1618654638
+BrookA.dat,Brook A,Tel Hai Skilled,0,0,0,1640008968
+BrookB.dat,Brook B,Tel Hai Skilled,0,0,0,1666997283
+BrookC.dat,Brook C,Tel Hai Skilled,0,0,0,1656083145
+Memory_Support.dat,LV,Meadowview,1,0,0,1619360639
+MtnView_Upper.dat,MU,Mountainview Upper,1,0,0,1670093720
+MtnView_Lower.dat,ML,Mountainview Lower,1,0,0,1662984810
+GSV_Skilled_FC.dat,FC,GSV Skilled,0,0,0,1619506517
+GSV_Skilled_WG.dat,WG,GSV Skilled,1,0,0,1628515050
+GSV_Skilled_SW.dat,SW,GSV Skilled,0,0,0,1646619032
+GSV_Skilled_SF.dat,SF,GSV Skilled,1,0,0,1605217752
+FMT_Farmcrest.dat,FA,Farmcrest,1,0,0,1613972503
+FMT_WRPC.dat,PC,WRPC,1,0,0,1588541983
+FMT_NE_NF.dat,"NE, NF",FMT Skilled,0,0,0,1659145863
+FMT_NG_NH.dat,"NG, NH",FMT Skilled,1,0,0,1619824304
+FMT_N1.dat,N1,FMT Skilled,0,0,0,1581611212
+FMT_RH.dat,RH,FMT Skilled,0,0,0,1590383441
+SUNNY_SA.dat,SA,Sunny Crest,0,0,0,1626575996
+SUNNY_SB.dat,SB,Sunny Crest,0,0,0,1595607651
+SUNNY_SC.dat,SCF,Sunny Crest,1,0,0,1604370647
+SUNNY_SG.dat,SG,Sunny Crest,1,0,0,1602314224
+ACADIA_B1toB4.dat,AC B1–B4,Acadia,1,0,0,1657403973
+ACADIA_B5toB8.dat,AC B5–B8,Acadia,1,0,0,1663538498
+EVERGREEN_EM_EN.dat,"EM, EN",Evergreen,1,0,0,1617446995
+EVERGREEN_ES.dat,ES,Evergreen,0,0,0,1639423246
+EVERGREEN_EW.dat,EW,Evergreen,1,0,0,1599342382
+CountryView.dat,CV,Country View,1,0,0,1658858433
+Willow_View.dat,WV,Willow View,1,0,0,1627012238
+Brossman.dat,BH,Maple Farm,1,0,0,1615808639
+Franzen.dat,FH,Maple Farm,0,0,0,1603673927
+OUTPATIENT_P1.dat,P1,Med Packs P1,1,0,0,1617811579
+OUTPATIENT_P2.dat,P2,Med Packs P2,1,0,0,1660674245
+OUTPATIENT_P3.dat,P3,Med Packs P3,1,0,0,1656555773
+OUTPATIENT_P4.dat,P4,Med Packs P4,0,0,0,1597061215
+Heartwood_HW.dat,HW,Heatherwood,1,0,0,1663178285

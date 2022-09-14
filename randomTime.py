@@ -15,7 +15,7 @@ for i in range(10):
 #done
 
 # or a function
-def gen_datetime(min_year=1900, max_year=datetime.now().year):
+def gen_datetime(min_year=2020, max_year=datetime.now().year):
     # generate a datetime in format yyyy-mm-dd hh:mm:ss.000000
     start = datetime(min_year, 1, 1, 00, 00, 00)
     years = max_year - min_year + 1
