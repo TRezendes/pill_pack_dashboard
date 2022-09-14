@@ -168,3 +168,4 @@ cython_debug/
 facilities.csv
 exportFileNames.txt
 *.command
+import/
