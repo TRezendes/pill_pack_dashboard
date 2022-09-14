@@ -48,13 +48,14 @@ def goToDashboard():
 
 @app.route('/dashboard')
 def Dashboard():
-    fill_list_list = fill_lists.query.all()
+    fill_list_list = fill_lists.query.order_by(fill_lists.last_export.desc()).all()
     fill_list_dict = {}
     sub_key1 = 'display_name'
     sub_key2 = 'facility'
     sub_key3 = 'exported'
     sub_key4 = 'display_class'
     for fill_list in fill_list_list:
+        print(fill_list.last_export)
         key = fill_list.list_export_name
         if fill_list.exported:
             display_class=timeTier(fill_list.last_export)
@@ -112,16 +113,17 @@ def dbFileUpload(file):
         with open(uploadFilePath, newline='') as f:
             reader = csv.reader(f)
             facilityList = list(reader)
-
         for facility in facilityList:
+            a, b, c, d, e, f, g =  facility[0], facility[1], facility[2], facility[3], facility[4], facility[5], int(facility[6])
+            g = datetime.fromtimestamp(g)
             fac_dict = {
-            'list_export_name': facility[0],
-            'display_name': facility[1],
-            'facility': facility[2],
-            'exported': facility[3],
-            'running': facility[4],
-            'complete': facility[5],
-            'last_export': facility[6]
+            'list_export_name': a,
+            'display_name': b,
+            'facility': c,
+            'exported': d,
+            'running': e,
+            'complete': f,
+            'last_export': g
             }
             fac_obj = fill_lists(**fac_dict)
             fac_obj_list.append(fac_obj)

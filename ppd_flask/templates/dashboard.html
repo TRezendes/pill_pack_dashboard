@@ -5,7 +5,8 @@
     <div class="grid-container three">
     {% for fill_list in fill_list_list %}
     {% if fill_list.exported == True %}
-        <div style="background: #D60270">
+    {% set key = fill_list.list_export_name %}
+        <div class="{{ fill_list_dict[key][sub_key4] }}">
             <h1>{{ fill_list.display_name }}</h1>
             <p class="larger">{{ fill_list.facility }}</p>
         </div>
