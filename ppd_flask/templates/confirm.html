@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="centerd">
+<div class="centered">
     <h1>Are you absolutely sure you want to do this?</h1>
     <h2>Uploading this file will overwrite all data currently in the database!</h2>
     <form method='POST' name="uploadConfirm" action="{{ url_for('dbFileUpload', file=file) }}" target="_self">
