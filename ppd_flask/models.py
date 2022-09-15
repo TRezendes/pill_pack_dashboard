@@ -23,6 +23,7 @@ SOFTWARE.
 '''
 
 from ppd_flask import db
+from datetime import datetime
 
 class fill_lists(db.Model):
     list_export_name = db.Column(db.Text, primary_key=True)
@@ -31,4 +32,4 @@ class fill_lists(db.Model):
     exported = db.Column(db.Integer, default=False)
     running = db.Column(db.Integer, default=False)
     complete =  db.Column(db.Integer, default=False)
-    last_export = db.Column(db.DateTime, nullable=True)
+    last_export = db.Column(db.DateTime, nullable=True, default=datetime(2022,8,21,2,32,0,232))

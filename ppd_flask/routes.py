@@ -55,9 +55,9 @@ def Dashboard():
     sub_key3 = 'exported'
     sub_key4 = 'display_class'
     for fill_list in fill_list_list:
-        print(fill_list.last_export)
         key = fill_list.list_export_name
         if fill_list.exported:
+            #print(fill_list.last_export)
             display_class=timeTier(fill_list.last_export)
         else:
             display_class='Tier4'
