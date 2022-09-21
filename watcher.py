@@ -102,7 +102,7 @@ class MyHandler(FileSystemEventHandler):
         fullFilePath=event.src_path
         fileName=fullFilePath.rsplit(os.sep, 1)[-1]
         # Print path to ensure watcher is working
-        print(f'New file at: {fullFilePath}')
+        print(f'{now} -- New file at: {fullFilePath}')
         if fileName in facilityList:
             with Session(engine) as session:
                 stmt = update(fill_lists).where(fill_lists.list_export_name == fileName).values(exported=True, last_export=now)
@@ -112,17 +112,19 @@ class MyHandler(FileSystemEventHandler):
         driver.refresh()
 
     def on_moved(self, event):
+        now=datetime.now()
         fileStartPath=event.src_path
         fileName=fileStartPath.rsplit(os.sep, 1)[-1]
         fileEndPath=event.dest_path
         # Print path to ensure watcher is working
-        print(f'{fileName} moved from {fileStartPath} to {fileEndPath}')
+        print(f'{now} -- {fileName} moved from {fileStartPath} to {fileEndPath}')
 
     def on_deleted(self, event):
+        now=datetime.now()
         fileStartPath=event.src_path
         fileName=fileStartPath.rsplit(os.sep, 1)[-1]
         # Print path to ensure watcher is working
-        print(f'{fileName} was deleted from {fileStartPath}.')
+        print(f'{now} -- {fileName} was deleted from {fileStartPath}.')
 
 if __name__ == '__main__':
     w = Watcher(path, MyHandler())
