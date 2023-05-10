@@ -36,5 +36,5 @@ vine==5.0.0
 watchdog==2.1.9
 wcwidth==0.2.5
 webdriver-manager==3.8.3
-Werkzeug==2.2.2
+Werkzeug==2.2.3
 wsproto==1.2.0
